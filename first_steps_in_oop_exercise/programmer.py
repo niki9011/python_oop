@@ -4,6 +4,7 @@ class Programmer:
         self.language = language
         self.skills = skills
 
+
     def watch_course(self, course_name, course_language, skills_earned):
         self.course_name = course_name
         self.course_language = course_language

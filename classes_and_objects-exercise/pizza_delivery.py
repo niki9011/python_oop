@@ -7,7 +7,7 @@ class PizzaDelivery:
 
     def add_extra(self, ingredient: str, quantity: int, price_per_quantity: float):
         if self.ordered:
-            return f"Pizza {self.name} already prepared, and we can't make any changes!"
+            return self.stop_order()
 
         if ingredient in self.ingredients:
             self.ingredients[ingredient] += quantity
@@ -18,7 +18,7 @@ class PizzaDelivery:
 
     def remove_ingredient(self, ingredient: str, quantity: int, price_per_quantity: float):
         if self.ordered:
-            return f"Pizza {self.name} already prepared, and we can't make any changes!"
+            return self.stop_order()
 
         if ingredient not in self.ingredients:
             return f"Wrong ingredient selected! We do not use {ingredient} in {self.name}!"
@@ -33,6 +33,9 @@ class PizzaDelivery:
         self.ordered = True
         result = ", ".join([f"{ingredient}: {quantity}" for ingredient, quantity in self.ingredients.items()])
         return f"You've ordered pizza {self.name} prepared with {result} and the price will be {self.price}lv."
+
+    def stop_order(self):
+        return f"Pizza {self.name} already prepared, and we can't make any changes!"
 
 
 margarita = PizzaDelivery('Margarita', 11, {'cheese': 2, 'tomatoes': 1})
